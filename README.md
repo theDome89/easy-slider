@@ -1,1 +1,5 @@
-# easy-slider
+This is s simple application, that builds a slider. The data to fill the slider is stored in a json file. The file path itself has to be set in the data-json-src attribute (required) of the slider container.
+The data-init-slider attribute is a required attribute and initiates the slider. The value of the data-interval-time attribute defines the interval in milliseconds until the next slide slides in automatically. If this attribute is not set, there will be no interval initiated.
+The data-big-image attribute and the data-show-control attribute are two more data attributes that are not required, but can be used to change the styling or the type of the slider. If the data-show-control attribute is set and there is also a valid value set for the data-interval-attribute, there will be a control panel displayed to start and stop the interval, which defines the time until the next slide shows up automatically. If the data-big-image attribute is set, there will be only the image of each slide displayed in the slider.
+
+You can also se the demo.html.
