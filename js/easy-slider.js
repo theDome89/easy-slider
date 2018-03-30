@@ -11,7 +11,7 @@
     new initSlider({
       data: self.attr('data-json-src'),
       elementId: 'slider' + index,
-      intervalTime: self.attr('data-interval-time') || 1000,
+      intervalTime: self.attr('data-interval-time'),
       showControl: self.attr('data-show-control') !== undefined,
       bigImage: self.attr('data-big-image') !== undefined
     }, self);
@@ -26,7 +26,7 @@
     var controlPanel = '', controlAvailable = '', bigImage = '';
 
     // build the necessary html code to show the control panel, if it should be shown
-    if(options.showControl === true) {
+    if(options.showControl === true && options.intervalTime !== undefined) {
       controlPanel = '<div class="control">' +
           '<div class="start" data-control-play data-selected alt="Start"></div>' +
           '<div class="stop" data-control-pause alt="Stop"></div>' +
@@ -128,15 +128,19 @@
       $element.find('[data-preview-element]').eq($selected.index()).attr('data-selected', '');
       $element.find('[data-preview-element]').eq($selected.index()).find('[data-preview-element-title]').attr('data-selected', '');
 
-      // start an interval with the given time to init autoscrolling
-      var interval = setInterval(function() {
-        $selected = getNext($element, $selected);
-      }, options.intervalTime); // milliseconds
+      if(options.intervalTime !== undefined) {
+          // start an interval with the given time to init autoscrolling
+          var interval = setInterval(function() {
+            $selected = getNext($element, $selected);
+          }, options.intervalTime); // milliseconds
+      }
 
       // init click events on the preview elements
       $('#' + elementId + ' [data-preview-element-link]').click(function () {
-         // clear the interval to stop autoscrolling
-         clearInterval(interval);
+         if(options.intervalTime !== undefined) {
+             // clear the interval to stop autoscrolling
+             clearInterval(interval);
+         }
 
          // get the selected element
          $selectedElement = $element.find('[data-main-content]').eq($(this).attr('data-index'));
@@ -154,48 +158,57 @@
       });
 
       $('#' + elementId + ' [data-next-element]').click(function () {
-          // clear the interval to stop autoscrolling
-          clearInterval(interval);
+          if(options.intervalTime !== undefined) {
+              // clear the interval to stop autoscrolling
+              clearInterval(interval);
+          }
+
           // get the next element to show
           $selected = getNext($element, $selected);
       });
 
       $('#' + elementId + ' [data-previous-element]').click(function () {
-          // clear the interval to stop autoscrolling
-          clearInterval(interval);
+          if(options.intervalTime !== undefined) {
+              // clear the interval to stop autoscrolling
+              clearInterval(interval);
+          }
+
           // get the previous element to show
           $selected = getPrev($element, $selected);
       });
 
-      $('#' + elementId + ' [data-element-link]').click(function () {
-          // clear the interval to stop autoscrolling
-          clearInterval(interval);
-      });
+      // if there is no interval time set, we don't need to listen to these events
+      if(options.intervalTime !== undefined) {
+          $('#' + elementId + ' [data-control-play]').click(function () {
+              // start an interval with the given time to init autoscrolling
+              var interval = setInterval(function() {
+                $selected = getNext($element, $selected);
+              }, options.intervalTime); // milliseconds
 
-      $('#' + elementId + ' [data-control-play]').click(function () {
-          // set a new interval to start autoscrolling
-          interval = setInterval(function() {
-            $selected = getNext($element, $selected);
-          }, options.intervalTime); // milliseconds
+              // mark the play button as selected and the pause button as unselected
+              $element.find('[data-control-pause]').removeAttr('data-selected');
+              $(this).attr('data-selected', '');
+          });
 
-          // mark the play button as selected and the pause button as unselected
-          $element.find('[data-control-pause]').removeAttr('data-selected');
-          $(this).attr('data-selected', '');
-      });
+          $('#' + elementId + ' [data-control-pause]').click(function () {
+              // clear the interval to stop autoscrolling
+              clearInterval(interval);
 
-      $('#' + elementId + ' [data-control-pause]').click(function () {
-          // clear the interval to stop autoscrolling
-          clearInterval(interval);
+              // mark the pause button as selected and the play button as unselected
+              $element.find('[data-control-play]').removeAttr('data-selected');
+              $(this).attr('data-selected', '');
+          });
 
-          // mark the pause button as selected and the play button as unselected
-          $element.find('[data-control-play]').removeAttr('data-selected');
-          $(this).attr('data-selected', '');
-      });
+          $('#' + elementId + ' [data-element-link]').click(function () {
+              // clear the interval to stop autoscrolling
+              clearInterval(interval);
+          });
 
-      $(window).blur(function() {
-          // clear the interval to stop autoscrolling
-          clearInterval(interval);
-      });
+          $(window).blur(function() {
+              // clear the interval to stop autoscrolling
+              clearInterval(interval);
+          });
+      }
 
       $(window).resize( function() {
           // reinit jScrollPane in case of a window resizing
@@ -206,7 +219,7 @@
           );
       });
     });
-  }
+  };
 
   function getNextElement($element, $selectedElement) {
     // returns the next element to show
