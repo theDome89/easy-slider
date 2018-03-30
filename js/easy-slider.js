@@ -135,6 +135,28 @@
           }, options.intervalTime); // milliseconds
       }
 
+      // init click events on the preview elements
+      $('#' + elementId + ' [data-preview-element-link]').click(function () {
+         if(options.intervalTime !== undefined) {
+             // clear the interval to stop autoscrolling
+             clearInterval(interval);
+         }
+
+         // get the selected element
+         $selectedElement = $element.find('[data-main-content]').eq($(this).attr('data-index'));
+
+         // mark the new element as selected
+         $element.find('[data-preview-element-title]').removeAttr('data-selected');
+         $(this).find('[data-preview-element-title]').attr('data-selected', '');
+         $element.find('[data-preview-element]').removeAttr('data-selected');
+         $(this).parent('[data-preview-element]').attr('data-selected', '');
+
+         // show the slide of the new element
+         $element.find('[data-main-content]').prependTo('[data-main-content-wrapper]').fadeOut(500).hide();
+         $selectedElement.fadeIn(500).end().appendTo('[data-main-content-wrapper]');
+         showNewContent($element, $selectedElement);
+      });
+
       $('#' + elementId + ' [data-next-element]').click(function () {
           if(options.intervalTime !== undefined) {
               // clear the interval to stop autoscrolling
