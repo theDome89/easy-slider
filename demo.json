@@ -1,0 +1,39 @@
+[
+	{
+		"buttonText": "Artikel lesen",
+		"label": "Serengeti",
+		"title": "Baum",
+		"detail": "Baum in der Serengeti",
+		"article": "http://www.geo.de/reisen/community/bild/regular/396233/Leopard-im-Baum-Serengeti-Tansania.jpg",
+		"contentHeader1": "Hintergrund",
+		"content1": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
+		"contentHeader2": "Information",
+		"content2": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At",
+		"contentHeader3": "Inhalt",
+		"content3": "Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At",
+		"image": "http://www.geo.de/reisen/community/bild/regular/396233/Leopard-im-Baum-Serengeti-Tansania.jpg"
+	},
+	{
+		"buttonText": "Bild ansehen",
+		"label": "Frühling",
+		"title": "Baum",
+		"detail": "Baum im Frühling",
+		"previewImage": "https://www.baumpflegeportal.de/wp-content/uploads/2017/08/130238_Baum-Jahresverlauf-fruehling.jpg",
+		"article": "https://www.baumpflegeportal.de/wp-content/uploads/2017/08/130238_Baum-Jahresverlauf-fruehling.jpg",
+		"contentHeader1": "Nachricht",
+		"content1": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At",
+		"image": "https://www.baumpflegeportal.de/wp-content/uploads/2017/08/130238_Baum-Jahresverlauf-fruehling.jpg"
+	},
+	{
+		"buttonText": "Artikel lesen",
+		"label": "Sommer",
+		"title": "Baum",
+		"detail": "Baum im Sommer",
+		"article": "https://www.baumpflegeportal.de/wp-content/uploads/2017/08/130238_Baum-Jahresverlauf-sommer.jpg",
+		"contentHeader1": "Inhalt",
+		"content1": "Lorem ipsum dolor sit amet, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+		"contentHeader2": "Text",
+		"content2": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At",
+		"image": "https://www.baumpflegeportal.de/wp-content/uploads/2017/08/130238_Baum-Jahresverlauf-sommer.jpg"
+	}
+]
