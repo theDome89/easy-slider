@@ -416,3 +416,11 @@ html, body {
     height: 100%;
     background: white;
 }
+
+.slider-wrapper [data-main-content="hidden"] {
+    display: none;
+}
+
+.slider-wrapper [data-main-content="shown"] {
+    display: block;
+}
