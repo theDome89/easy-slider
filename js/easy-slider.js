@@ -106,7 +106,7 @@
         );
     	});
     })
-    .success(function() {
+    .done(function() {
       // init jScrollPane after building the html
       $element.find('[data-preview-container]').jScrollPane(
         {
