@@ -143,7 +143,7 @@
          }
 
          // get the selected element
-         $selectedElement = $element.find('[data-main-content]').eq($(this).attr('data-index'));
+         $selected = $element.find('[data-main-content]').eq($(this).attr('data-index'));
 
          // mark the new element as selected
          $element.find('[data-preview-element-title]').removeAttr('data-selected');
@@ -153,8 +153,8 @@
 
          // show the slide of the new element
          $element.find('[data-main-content]').prependTo('[data-main-content-wrapper]').fadeOut(500).hide();
-         $selectedElement.fadeIn(500).end().appendTo('[data-main-content-wrapper]');
-         showNewContent($element, $selectedElement);
+         $selected.fadeIn(500).end().appendTo('[data-main-content-wrapper]');
+         showNewContent($element, $selected);
       });
 
       $('#' + elementId + ' [data-next-element]').click(function () {
