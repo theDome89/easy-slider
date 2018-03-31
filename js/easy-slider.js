@@ -6,15 +6,17 @@
   // data-interval-time is the time until the next slide appears if the autoscroll is active
   // if the data-big-image attribute is set, the slider will only show the image without any text in each slider
   // if the data-show-control attribute is set, the control panel to start and stop the autoscroll will be displayed
-  $('[data-init-slider]').each(function(index, item){
-    var self = $(item);
-    new initSlider({
-      data: self.attr('data-json-src'),
-      elementId: 'slider' + index,
-      intervalTime: self.attr('data-interval-time'),
-      showControl: self.attr('data-show-control') !== undefined,
-      bigImage: self.attr('data-big-image') !== undefined
-    }, self);
+  $(document).ready(function() {
+    $('[data-init-slider]').each(function(index, item){
+      var self = $(item);
+      new initSlider({
+        data: self.attr('data-json-src'),
+        elementId: 'slider' + index,
+        intervalTime: self.attr('data-interval-time'),
+        showControl: self.attr('data-show-control') !== undefined,
+        bigImage: self.attr('data-big-image') !== undefined
+      }, self);
+    });
   });
 
   function initSlider(options, $element) {
